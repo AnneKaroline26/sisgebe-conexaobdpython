@@ -36,6 +36,6 @@ def manu():
         opcao = input("Escolha uma opção: ")
 
         if opcao == "1":
-            nome = input
+            nome = input 
 
        
