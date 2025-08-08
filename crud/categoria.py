@@ -12,7 +12,6 @@ def criar_categoria(nome, descricao):
     finally:
         conn.close()
         
-
 def listar_categorias():
     try:
         conn = conectar()
@@ -45,5 +44,11 @@ def deletar_categoria(id_categoria):
         cursor = conn.cursor()
         cursor.execute("DELETE FROM Categoria WHERE id=%s", (id_categoria,))
         conn.commit()
+        if cursor.rowcount == 0:
+            return{"status":"aviso","mensagem":"Nenhuma categoria encontrada para deletar."}
+        return{"status":"sucesso","mensagem":"Nenhuma categoria excluida!."}
+    except Exception as e:
+        return{"status":"erro","mensagem":str(e)}
+    finally:
         conn.close()
-        print("Categoria excluída!")
+        
