@@ -105,4 +105,29 @@ CREATE TABLE HistoricoLeitura (
 );
 
 --Tabela Sugestao
-CREATE
+CREATE TABLE Sugestao (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    titulo VARCHAR(150),
+    autor VARCHAR(100),
+    categoria VARCHAR(50),
+    justificativa TEXT,
+    data_sugestao DATE,
+    aluno_id INT,
+    Professor_id INT,
+    FOREIGN KEY (aluno_id) REFERENCES Aluno(id),
+    FOREIGN KEY (Professor_id) REFERENCES Professor(id)
+);
+
+-- Tabela Relatorio
+CREATE TABLE Relatorio (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    tipo ENUM('mensal', 'turma', 'aluno', 'livros'),
+    periodo_inicio DATE,
+    periodo_fim DATE,
+    gerador_por_bibliotecario INT,
+    gerador_por_diretor INT,
+    gerador_por_supervisor INT,
+    FOREIGN KEY (gerador_por_bibliotecario) REFERENCES Bibliotecario(id),
+    FOREIGN KEY (gerador_por_diretor) REFERENCES Diretor(id),
+    FOREIGN KEY (gerador_por_supervisor) REFERENCES Supervisor(id)
+);
