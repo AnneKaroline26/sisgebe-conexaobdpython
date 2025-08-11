@@ -39,4 +39,44 @@ def obter_livro(id_livro):
         cursor.execute("SELECT * FROM Livro WHERE id=%s", (id_livro,))
         row = cursor.fetchone()
         if not row:
-            return {"status":"aviso","mensagem":"Nenhuma categoria encontrada para deletar."}
+            return {"status":"aviso","mensagem":"Livro não encontrado."}
+        return row
+    except Exception as e:
+        return{"status":"erro","mensagem":str(e)}
+    finally:
+        try: conn.close()
+        except: pass
+
+def atualizar_livro(id_livro, titulo, autor, isbn, sinopse, capa, quantidade, categoria_id):
+    try:
+        conn = conectar()
+        cursor = conn.cursor
+        cursor.execute(
+            "UPDATE Livro SET titulo=%s, autor=%s, isbn=%s, sinopse=%s, capa=%s, quatidade=%s, categoria_id=%s WHERE id=%s",
+            (titulo, autor, isbn, sinopse, capa, quantidade, categoria_id, id_livro)
+        )
+        conn.commit()
+        if cursor.rowcount==0:
+            return{"status":"aviso","mensagem":"Nenhum livro encontrado para atualizar"}
+        return {"status":"sucesso","mensagem":"Livro atualizado com sucesso."}
+    except Exception as e:
+        return{"status":"erro","mensagem":str(e)}
+    finally:
+        try: conn.close()
+        except: pass
+
+def deletar_livro(id_livro):
+    try:
+        conn = conectar()
+        cursor = conn.cursor()
+        cursor.execute("DELETE FROM Livro WHERE id=%s", (id_livro))
+        conn.commit()
+        if cursor.rowcount==0:
+            return {"status":"aviso","mensagem":"Nenhum livro encontrado para deletar."}
+        return {"status":"sucesso","mensagem":"Livro excluido com sucesso."}
+    except Exception as e:
+        return{"status":"erro","mensagem":str(e)}
+    finally:
+        try:
+            except: pass
+
