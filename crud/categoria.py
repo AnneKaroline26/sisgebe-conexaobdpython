@@ -6,9 +6,9 @@ def criar_categoria(nome, descricao):
         cursor = conn.cursor()
         cursor.execute("INSERT INTO Categoria (nome, descricao) VALUES (%s, %s)", (nome, descricao))
         conn.commit()
-        return{"status": "sucesso": "mensagem": "Categoria criada com sucesso!"}
+        return{"status": "sucesso", "mensagem":"Categoria criada com sucesso!"}
     except Exception as e:
-        return{"status": "erro", "mensagem":str(e)}
+        return{"status":"erro","mensagem":str(e)}
     finally:
         conn.close()
         
@@ -16,18 +16,18 @@ def listar_categorias():
     try:
         conn = conectar()
         cursor = conn.cursor(dictionary=True)
-        cursor.execute("SELECT * fROM Categoria")
+        cursor.execute("SELECT * FROM Categoria")
         return cursor.fetchall()
     except Exception as e:
         return{"status":"erro","mensagem":str(e)}
-    finally
+    finally:
         conn.close()
-        
+
 def atualizar_categoria(id_categoria, novo_nome, nova_descricao):
     try:
         conn = conectar()
         cursor = conn.cursor()
-        cursor.execute("UPDATE Categoria SET nome=%s, descricao=%s WHERE id=%s",
+        cursor.execute("UPDATE Categoria SET nome=%s, descricao=%s WHERE id=%s", 
                     (novo_nome, nova_descricao, id_categoria))
         conn.commit()
         if cursor.rowcount == 0:
@@ -46,9 +46,8 @@ def deletar_categoria(id_categoria):
         conn.commit()
         if cursor.rowcount == 0:
             return{"status":"aviso","mensagem":"Nenhuma categoria encontrada para deletar."}
-        return{"status":"sucesso","mensagem":"Nenhuma categoria excluida!."}
+        return{"status":"sucesso","mensagem":"Categoria excluida!"}
     except Exception as e:
         return{"status":"erro","mensagem":str(e)}
     finally:
         conn.close()
-        
