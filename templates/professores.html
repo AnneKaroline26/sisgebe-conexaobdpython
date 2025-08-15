@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block conteudo %}
-<h1>Alunos</h1>
-<form method="post" action="/alunos/adicionar">
+<h1>Professores</h1>
+<form method="post" action="/professores/adicionar">
     <div class="mb-3">
         <label>Nome</label>
         <input type="text" name="nome" class="form-control" required>
@@ -16,13 +16,13 @@
 <table class="table table-striped">
     <thead><tr><th>ID</th><th>Nome</th><th>Email</th><th>Ações</th></tr></thead>
     <tbody>
-        {% for aluno in alunos %}
+        {% for prof in professores %}
         <tr>
-            <td>{{ aluno.id }}</td>
-            <td>{{ aluno.nome }}</td>
-            <td>{{ aluno.email }}</td>
+            <td>{{ prof.id }}</td>
+            <td>{{ prof.nome }}</td>
+            <td>{{ prof.email }}</td>
             <td>
-                <a href="/alunos/deletar/{{ aluno.id }}" class="btn btn-danger btn-sm">Excluir</a>
+                <a href="/professores/deletar/{{ prof.id }}" class="btn btn-danger btn-sm">Excluir</a>
             </td>
         </tr>
         {% endfor %}
