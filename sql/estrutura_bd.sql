@@ -104,7 +104,7 @@ CREATE TABLE HistoricoLeitura (
     FOREIGN KEY (livro_id) REFERENCES Livro(id)
 );
 
---Tabela Sugestao
+-- Tabela Sugestao
 CREATE TABLE Sugestao (
     id INT PRIMARY KEY AUTO_INCREMENT,
     titulo VARCHAR(150),

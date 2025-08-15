@@ -46,4 +46,4 @@ def popular():
     print("Dados de exemplo inseridos (verifique ids e tabela).")
 
 if __name__== "__main__":
-    popular´()
+    popular()
