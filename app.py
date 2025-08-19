@@ -29,7 +29,7 @@ app.secret_key = "troque_esta_chave_em_producao"
 def index():
     return render_template("index.html")
 
-# =========================================================
+# =========================================================       
 #                      AUTENTICAÇÃO
 # =========================================================
 def login_required(view):
